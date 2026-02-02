@@ -9,7 +9,7 @@ export const Header = () => {
     <header className="w-full flex items-center justify-between px-6 py-4 shadow-md">
       <div>
         <h1 className="uppercase tracking-wider italic font-semibold text-xl">
-          Markdown
+          Readocs
         </h1>
       </div>
 
