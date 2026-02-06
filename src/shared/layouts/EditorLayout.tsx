@@ -6,7 +6,7 @@ interface EditorLayoutProps {
 
 export const EditorLayout = ({ children }: EditorLayoutProps) => {
   return (
-    <section className="w-full h-full grid grid-cols-2">
+    <section className="w-full h-full grid grid-cols-2 relative">
       {children}
     </section>
   )
