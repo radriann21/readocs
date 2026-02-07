@@ -1,17 +1,21 @@
 import { useEditorStore } from "@/shared/model/store";
+import { useMemo } from "react";
 
 export const EditorHeader = () => {
   const { documentContent } = useEditorStore();
 
-  const words = documentContent
-    .replace(/[^a-zA-ZáéíóúñÁÉÍÓÚÑüÜ\s]/g, "")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean).length;
-
-  const chars = documentContent.length;
-
-  const lines = documentContent.split("\n").length;
+  const { words, chars, lines } = useMemo(
+    () => ({
+      words: documentContent
+        .replace(/[^a-zA-ZáéíóúñÁÉÍÓÚÑüÜ\s]/g, "")
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean).length,
+      chars: documentContent.length,
+      lines: documentContent.split("\n").length,
+    }),
+    [documentContent],
+  );
 
   return (
     <div className="flex justify-between items-center px-4 py-2 bg-gray-100 border border-gray-200">
