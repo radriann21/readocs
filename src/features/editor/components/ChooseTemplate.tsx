@@ -1,6 +1,12 @@
+import { lazy } from "react";
 import { File } from "lucide-react";
-import { ChooseTemplateModal } from "./ChooseTemplateModal";
 import { useState } from "react";
+
+const ChooseTemplateModal = lazy(() =>
+  import("./ChooseTemplateModal").then((mod) => ({
+    default: mod.ChooseTemplateModal,
+  })),
+);
 
 export const ChooseTemplate = () => {
   const [open, setOpen] = useState(false);
