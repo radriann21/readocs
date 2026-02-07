@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# Readocs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, browser-based Markdown editor with live preview. Write Markdown on the left, see the rendered output on the right in real time.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Live Preview** — See your Markdown rendered instantly as you type
+- **Syntax Highlighting** — CodeMirror-powered editor with Markdown syntax highlighting
+- **Formatting Toolbar** — Quick-access buttons for bold, italic, headings, links, lists, quotes, and inline code
+- **Templates** — 8 pre-built Markdown templates (Open Source, API, CLI, Web App, Mobile App, etc.) to kickstart your documentation
+- **Document Stats** — Real-time word, character, and line count
+- **Download** — Export your document as a `.md` file with a custom filename
+- **Persistent Storage** — Your work is automatically saved to `localStorage` and restored on reload
 
-## React Compiler
+## Run Locally
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Clone the project
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+  git clone https://github.com/radriann21/readocs.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Go to the project directory
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+  cd readocs
 ```
+
+Install dependencies
+
+```bash
+  pnpm install
+```
+
+Start the development server
+
+```bash
+  pnpm dev
+```
+
+Build for production
+
+```bash
+  pnpm build
+```
+
+## Project Structure
+
+```
+src/
+├── app/                  # App entry component
+├── features/
+│   ├── editor/           # Editor panel (CodeMirror, Toolbar, Header, Templates)
+│   ├── header/           # Top navigation bar (title input, download button)
+│   └── preview/          # Live Markdown preview panel
+├── shared/
+│   ├── layouts/          # MainLayout, EditorLayout
+│   ├── model/            # Zustand store, types
+│   └── utils/            # Helper functions (getSelection, templates)
+└── styles/               # Global CSS (Tailwind)
+```
+
+## Tech Stack
+
+**Client:** React 19, TypeScript, TailwindCSS 4, Zustand
+
+**Editor:** CodeMirror 6 (via @uiw/react-codemirror)
+
+**Markdown:** react-markdown, remark-gfm, rehype-starry-night, rehype-raw, rehype-sanitize
+
+**Build:** Vite 7, SWC
+
+## Authors
+
+- [@radriann21](https://www.github.com/radriann21)
