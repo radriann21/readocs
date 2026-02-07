@@ -57,7 +57,11 @@ export const useEditorStore = create<State & Actions>()(
         });
       },
       setSelectionToLink: () => {
-        // TODO: Implement link insertion
+        const sel = getSelection(get().editorView);
+        if (!sel) return;
+        sel.view.dispatch({
+          changes: { from: sel.from, to: sel.to, insert: `[${sel.text}](url)` },
+        });
       },
       handleDocumentDownload: () => {
         const file = new Blob([get().documentContent], {

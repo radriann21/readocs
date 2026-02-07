@@ -9,6 +9,7 @@ export const Toolbar = () => {
     setSelectionToHeading,
     setSelectionToQuote,
     setSelectionToList,
+    setSelectionToLink,
   } = useEditorStore();
 
   const options = [
@@ -25,7 +26,7 @@ export const Toolbar = () => {
     {
       name: "Link",
       icon: <Link className="w-3 h-3" />,
-      action: () => console.log("Link"),
+      action: setSelectionToLink,
     },
     {
       name: "Heading",
